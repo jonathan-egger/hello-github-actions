@@ -1,17 +1,18 @@
 name: A workflow for my Hello World file
 on: 
-    push:
-        inputs:
-            name:
-                description: Your name
-                default: Jonathan2
-                required: true
-    workflow_dispatch:
-        inputs:
-            name:
-                description: Your name
-                default: Jonathan
-                required: true
+    # push:
+    #     inputs:
+    #         name:
+    #             description: Your name
+    #             default: Jonathan2
+    #             required: true
+    # workflow_dispatch:
+    #     inputs:
+    #         name:
+    #             description: Your name
+    #             default: Jonathan
+    #             required: true
+    create
 
 jobs:
     build:
@@ -22,11 +23,14 @@ jobs:
             # Error: Can't find 'action.yml', 'action.yaml' or 'Dockerfile' under '/home/runner/work/hello-github-actions/hello-github-actions/action-a'. Did you forget to run actions/checkout before running your local action?
             - uses: actions/checkout@v1
 
+            - run: |
+                echo "Value: ${{ github.event.ref }}"
+
             - uses: ./action-a
               with:
                 MY_NAME: ${{ github.event.inputs.name }}
 
-            - uses: jfrog/setup-jfrog-cli@v1
-            - run: |
-                jfrog --version
-                jfrog rt ping --url=http://my-rt-server.com/artifactory
+            # - uses: jfrog/setup-jfrog-cli@v1
+            # - run: |
+            #     jfrog --version
+            #     jfrog rt ping --url=http://my-rt-server.com/artifactory
