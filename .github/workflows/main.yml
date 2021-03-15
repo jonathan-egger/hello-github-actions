@@ -6,13 +6,13 @@ on:
     #             description: Your name
     #             default: Jonathan2
     #             required: true
-    # workflow_dispatch:
-    #     inputs:
-    #         name:
-    #             description: Your name
-    #             default: Jonathan
-    #             required: true
-    create
+    workflow_dispatch:
+        inputs:
+            name:
+                description: Your name
+                default: Jonathan
+                required: true
+    create:
 
 jobs:
     build:
@@ -25,7 +25,6 @@ jobs:
 
             - run: |
                 echo "Value: ${{ github.event.ref }}"
-
             - uses: ./action-a
               with:
                 MY_NAME: ${{ github.event.inputs.name }}
