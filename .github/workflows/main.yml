@@ -18,7 +18,14 @@ jobs:
         name: Hello world action
         runs-on: ubuntu-latest
         steps:
-            # - uses: actions/checkout@v1
+            # Without this line will get:
+            # Error: Can't find 'action.yml', 'action.yaml' or 'Dockerfile' under '/home/runner/work/hello-github-actions/hello-github-actions/action-a'. Did you forget to run actions/checkout before running your local action?
+            - uses: actions/checkout@v1
+
             - uses: ./action-a
               with:
                 MY_NAME: ${{ github.event.inputs.name }}
+
+            - uses: jfrog/setup-jfrog-cli@v1
+            - run: jfrog --version
+            - run: jfrog p
