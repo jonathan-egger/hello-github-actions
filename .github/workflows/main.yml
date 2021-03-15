@@ -27,5 +27,6 @@ jobs:
                 MY_NAME: ${{ github.event.inputs.name }}
 
             - uses: jfrog/setup-jfrog-cli@v1
-            - run: jfrog --version
-            - run: jfrog p
+            - run: |
+                jfrog --version
+                jfrog rt p
