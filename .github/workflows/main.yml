@@ -35,5 +35,5 @@ jobs:
                 JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
             - run: |
                 jfrog --version
-                jfrog rt use jegger-jfrog
+                jfrog rt use jegger-frog-artifactory
                 jfrog rt ping
