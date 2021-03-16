@@ -34,5 +34,6 @@ jobs:
                 JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
             - run: |
                 jfrog --version
+                jfrog rt use local-1
                 jfrog rt ping --url=https://jegger.jfrog.io/artifactory
                 jfrog rt dl --url=https://jegger.jfrog.io/artifactory my-maven-repo/io/apigee/build-tools/enterprise4g/apigee-edge-maven-plugin/2.1.1-SNAPSHOT/apigee-edge-maven-plugin-2.1.1-20210316.160210-1.jar
