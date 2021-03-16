@@ -32,4 +32,4 @@ jobs:
             - uses: jfrog/setup-jfrog-cli@v1
             - run: |
                 jfrog --version
-                jfrog rt ping --url=https/jegger.jfrog.io/artifactory
+                jfrog rt ping --url=https://jegger.jfrog.io/artifactory
