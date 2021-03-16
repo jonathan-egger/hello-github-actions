@@ -29,6 +29,13 @@ jobs:
             #   with:
             #     MY_NAME: ${{ github.event.inputs.name }}
 
+            # Getting this to work.
+            # Mostly follow: https://github.com/marketplace/actions/setup-jfrog-cli
+            # Those instructions suggest "jfrog rt c <server id>". That command is deprecated.
+            # Instead, use "jfrog c add <server id>"
+            # With that command you must specify http://<platform url>/artifactory as BOTH
+            # the "JFrog platform URL" and the "JFrog Artifactory URL." Otherwise the ping command
+            # will not work (since it uses the platform URL which returns 404 at the root).
             - uses: jfrog/setup-jfrog-cli@v1
               env:
                 JFROG_CLI_LOG_LEVEL: DEBUG
@@ -38,4 +45,4 @@ jobs:
                 jfrog rt use jegger-frog-artifactory
                 jfrog rt ping
                 jfrog rt search "*"
-                jfrog rt dl --url=https://jegger.jfrog.io/artifactory my-maven-repo/io/apigee/build-tools/enterprise4g/apigee-edge-maven-plugin/2.1.1-SNAPSHOT/apigee-edge-maven-plugin-2.1.1-20210316.160210-1.jar
+                jfrog rt dl my-maven-repo/io/apigee/build-tools/enterprise4g/apigee-edge-maven-plugin/2.1.1-SNAPSHOT/apigee-edge-maven-plugin-2.1.1-20210316.160210-1.jar
