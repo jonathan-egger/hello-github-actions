@@ -1,18 +1,17 @@
 name: A workflow for my Hello World file
 on: 
-    # push:
-    #     inputs:
-    #         name:
-    #             description: Your name
-    #             default: Jonathan2
-    #             required: true
+    push:
+        inputs:
+            name:
+                description: Your name
+                default: Jonathan2
+                required: true
     workflow_dispatch:
         inputs:
             name:
                 description: Your name
                 default: Jonathan
                 required: true
-    create:
 
 jobs:
     build:
