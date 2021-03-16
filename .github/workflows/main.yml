@@ -44,7 +44,6 @@ jobs:
                 jfrog --version
                 jfrog rt use jegger-frog-artifactory
                 jfrog rt ping
-                jfrog rt search "*"
                 jfrog rt dl my-maven-repo/io/apigee/build-tools/enterprise4g/apigee-edge-maven-plugin/2.1.1-SNAPSHOT/apigee-edge-maven-plugin-2.1.1-20210316.160210-1.jar
-
-            - run: ls my-maven-repo/io/apigee/build-tools/enterprise4g/apigee-edge-maven-plugin/2.1.1-SNAPSHOT/apigee-edge-maven-plugin-2.1.1-20210316.160210-1.jar
+            
+            - run: ls
