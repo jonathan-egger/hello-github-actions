@@ -14,21 +14,51 @@ on:
                 required: true
 
 jobs:
-    build:
-        name: Hello world action
+    show_push_vars:
         runs-on: ubuntu-latest
+        if: github.event_name == 'push'
+    
         steps:
-            # Without this line will get:
-            # Error: Can't find 'action.yml', 'action.yaml' or 'Dockerfile' under '/home/runner/work/hello-github-actions/hello-github-actions/action-a'. Did you forget to run actions/checkout before running your local action?
-            - uses: actions/checkout@v1
+            -run: |
+            echo "github.event.ref: ${{ github.event.ref }}"
+            echo "github.event.before: ${{ github.event.before }}"
+            echo "github.event.after: ${{ github.event.after }}"
+            echo "github.event.sha: $GITHUB_SHA"
+            echo "event name: $(GITHUB_EVENT_NAME)"
+            echo "event name2: ${{ github.event_name }}"
+            env
+            echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
+            
+    show_other_vars:
+        runs-on: ubuntu-latest
+        if: github.event_name != 'push'
+    
+        steps:
+            -run: |
+            echo "github.event.ref: ${{ github.event.ref }}"
+            echo "github.event.action: ${{ github.event.action }}"
+            echo "github.event.workflow_run.head_branch: ${{ github.event.workflow_run.head_branch }}"
+            echo "event name2: ${{ github.event_name }}"
+            env
+            echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
 
-            - run: |
-                echo "github.event.ref: ${{ github.event.ref }}"
-                echo "github.event.sha: $GITHUB_SHA"
-                echo "github.event.sha: $(env.GITHUB_SHA)"
-                env
-                echo "github.event: ${{ github.event.keys }}"
-                echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
+    # build:
+    #     name: Hello world action
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         # Without this line will get:
+    #         # Error: Can't find 'action.yml', 'action.yaml' or 'Dockerfile' under '/home/runner/work/hello-github-actions/hello-github-actions/action-a'. Did you forget to run actions/checkout before running your local action?
+    #         - uses: actions/checkout@v1
+
+    #         - run: |
+    #             echo "github.event.ref: ${{ github.event.ref }}"
+    #             echo "github.event.before: ${{ github.event.before }}"
+    #             echo "github.event.after: ${{ github.event.after }}"
+    #             echo "github.event.sha: $GITHUB_SHA"
+    #             echo "event name: $(GITHUB_EVENT_NAME)"
+    #             echo "event name2: ${{ github.event_name }}"
+    #             env
+    #             echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
 
             # - uses: ./action-a
             #   with:
