@@ -20,14 +20,14 @@ jobs:
     
         steps:
             -run: |
-            echo "github.event.ref: ${{ github.event.ref }}"
-            echo "github.event.before: ${{ github.event.before }}"
-            echo "github.event.after: ${{ github.event.after }}"
-            echo "github.event.sha: $GITHUB_SHA"
-            echo "event name: $(GITHUB_EVENT_NAME)"
-            echo "event name2: ${{ github.event_name }}"
-            env
-            echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
+                echo "github.event.ref: ${{ github.event.ref }}"
+                echo "github.event.before: ${{ github.event.before }}"
+                echo "github.event.after: ${{ github.event.after }}"
+                echo "github.event.sha: $GITHUB_SHA"
+                echo "event name: $(GITHUB_EVENT_NAME)"
+                echo "event name2: ${{ github.event_name }}"
+                env
+                echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
             
     show_other_vars:
         runs-on: ubuntu-latest
@@ -35,12 +35,12 @@ jobs:
     
         steps:
             -run: |
-            echo "github.event.ref: ${{ github.event.ref }}"
-            echo "github.event.action: ${{ github.event.action }}"
-            echo "github.event.workflow_run.head_branch: ${{ github.event.workflow_run.head_branch }}"
-            echo "event name2: ${{ github.event_name }}"
-            env
-            echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
+                echo "github.event.ref: ${{ github.event.ref }}"
+                echo "github.event.action: ${{ github.event.action }}"
+                echo "github.event.workflow_run.head_branch: ${{ github.event.workflow_run.head_branch }}"
+                echo "event name2: ${{ github.event_name }}"
+                env
+                echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
 
     # build:
     #     name: Hello world action
