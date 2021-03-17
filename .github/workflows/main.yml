@@ -28,7 +28,10 @@ jobs:
                 echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
                 echo "where_am_i=in_push" >> $GITHUB_ENV
 
-
+            - run: |
+                echo "should see where_am_i in env now"
+                env
+                echo $where_am_i
             
     show_other_vars:
         runs-on: ubuntu-latest
