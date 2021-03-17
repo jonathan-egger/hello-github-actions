@@ -28,7 +28,8 @@ jobs:
                 echo "Value: ${{ github.event.ref }}"
                 echo "env.GITHUB_SHA: ${{ env.GITHUB_SHA }}"
                 echo "env.GITHUB_REF: ${{ env.GITHUB_REF }}"
-                github.event.inputs.name: ${{ env.MY_NAME }}
+                echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
+                echo "github.event.inputs.name2: ${{ env.MY_NAME }}"
 
             # - uses: ./action-a
             #   with:
