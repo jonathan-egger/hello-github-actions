@@ -5,11 +5,6 @@ name: Dev Deployment Workflow
 on: 
     # Allows invocation from outside github (i.e., Jenkins)
     repository_dispatch:
-        inputs:
-            name:
-                description: Your name
-                default: Jonathan
-                required: true
 
     # Allows invocation from github actions UI
     workflow_dispatch:
