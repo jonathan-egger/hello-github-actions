@@ -46,16 +46,10 @@ jobs:
 
     show_where_am_i:
         runs-on: ubuntu-latest
-        needs: [show_push_vars, show_other_vars] 
+        needs: show_push_vars 
         steps:
             - run: |
-                echo "github.event.ref: ${{ github.event.ref }}"
-                echo "github.event.action: ${{ github.event.action }}"
-                echo "github.event.workflow_run.head_branch: ${{ github.event.workflow_run.head_branch }}"
-                echo "event name2: ${{ github.event_name }}"
                 env
-                echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
-                echo "where_am_i=not_in_push" >> $GITHUB_ENV
         
 
     # build:
