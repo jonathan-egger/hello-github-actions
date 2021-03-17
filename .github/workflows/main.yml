@@ -16,18 +16,19 @@ on:
 jobs:
     show_push_vars:
         runs-on: ubuntu-latest
-        if: github.event_name == 'push'
-    
+  
         steps:
+            if: github.event_name == 'push'
             - run: |
                 echo "github.event.ref: ${{ github.event.ref }}"
                 echo "github.event.before: ${{ github.event.before }}"
                 echo "github.event.after: ${{ github.event.after }}"
-                echo "github.event.sha: $GITHUB_SHA"
-                echo "event name: $(GITHUB_EVENT_NAME)"
                 echo "event name2: ${{ github.event_name }}"
                 env
                 echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
+                echo "where_am_i=in_push" >> $GITHUB_ENV
+
+
             
     show_other_vars:
         runs-on: ubuntu-latest
@@ -41,6 +42,8 @@ jobs:
                 echo "event name2: ${{ github.event_name }}"
                 env
                 echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
+                echo "where_am_i=not_in_push" >> $GITHUB_ENV
+        
 
     # build:
     #     name: Hello world action
