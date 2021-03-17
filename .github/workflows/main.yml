@@ -21,15 +21,13 @@ jobs:
             # Without this line will get:
             # Error: Can't find 'action.yml', 'action.yaml' or 'Dockerfile' under '/home/runner/work/hello-github-actions/hello-github-actions/action-a'. Did you forget to run actions/checkout before running your local action?
             - uses: actions/checkout@v1
-              with:
-                MY_NAME: ${{ github.event.inputs.name }}
 
             - run: |
-                echo "Value: ${{ github.event.ref }}"
-                echo "env.GITHUB_SHA: ${{ env.GITHUB_SHA }}"
-                echo "env.GITHUB_REF: ${{ env.GITHUB_REF }}"
+                echo "github.event.ref: ${{ github.event.ref }}"
+                echo "github.event.sha: ${{ github.event.sha }}"
+                env
+                echo "github.event: ${{ github.event }}"
                 echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
-                echo "github.event.inputs.name2: ${{ env.MY_NAME }}"
 
             # - uses: ./action-a
             #   with:
