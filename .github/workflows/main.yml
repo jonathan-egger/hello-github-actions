@@ -19,7 +19,7 @@ jobs:
         if: github.event_name == 'push'
     
         steps:
-            -run: |
+            - run: |
                 echo "github.event.ref: ${{ github.event.ref }}"
                 echo "github.event.before: ${{ github.event.before }}"
                 echo "github.event.after: ${{ github.event.after }}"
@@ -34,7 +34,7 @@ jobs:
         if: github.event_name != 'push'
     
         steps:
-            -run: |
+            - run: |
                 echo "github.event.ref: ${{ github.event.ref }}"
                 echo "github.event.action: ${{ github.event.action }}"
                 echo "github.event.workflow_run.head_branch: ${{ github.event.workflow_run.head_branch }}"
