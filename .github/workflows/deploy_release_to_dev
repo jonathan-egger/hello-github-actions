@@ -1,11 +1,17 @@
+# workflow syntax guide: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
+
 name: A workflow for my Hello World file
+
 on: 
-    # push:
-    #     inputs:
-    #         name:
-    #             description: Your name
-    #             default: Jonathan2
-    #             required: true
+    # Allows invocation from outside github (i.e., Jenkins)
+    repository_dispatch:
+        inputs:
+            name:
+                description: Your name
+                default: Jonathan
+                required: true
+
+    # Allows invocation from github actions UI
     workflow_dispatch:
         inputs:
             name:
@@ -51,6 +57,7 @@ jobs:
         runs-on: ubuntu-latest
         needs: show_push_vars 
         steps:
+            # Will not see where_am_i here
             - run: |
                 env
         
