@@ -24,9 +24,10 @@ jobs:
 
             - run: |
                 echo "github.event.ref: ${{ github.event.ref }}"
-                echo "github.event.sha: ${{ github.event.sha }}"
+                echo "github.event.sha: $GITHUB_SHA"
+                echo "github.event.sha: $(env.GITHUB_SHA)"
                 env
-                echo "github.event: ${{ github.event }}"
+                echo "github.event: ${{ github.event.keys }}"
                 echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
 
             # - uses: ./action-a
