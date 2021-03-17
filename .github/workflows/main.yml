@@ -45,6 +45,7 @@ jobs:
                 echo "where_am_i=not_in_push" >> $GITHUB_ENV
 
     show_where_am_i:
+        runs-on: ubuntu-latest
         needs: [show_push_vars, show_other_vars] 
         steps:
             - run: |
