@@ -1,6 +1,6 @@
 # workflow syntax guide: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
 
-name: A workflow for my Hello World file
+name: Dev Deployment Workflow
 
 on: 
     # Allows invocation from outside github (i.e., Jenkins)
