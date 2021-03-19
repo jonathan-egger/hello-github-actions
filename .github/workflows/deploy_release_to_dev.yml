@@ -38,7 +38,7 @@ jobs:
             - run: |
                 if [[ ${{ github.event.ref }} = refs/heads/release/* ]] 
                 then 
-                    echo "Validation failed: This workflow cannot be executed on a non-release branch: ${{ github.event.ref }}
+                    echo "Validation failed: This workflow requires a release branch. Instead, branch is ${{ github.event.ref }}"
                     exit 1
                 fi
     show_push_vars:
