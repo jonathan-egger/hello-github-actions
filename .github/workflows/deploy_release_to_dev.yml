@@ -65,8 +65,9 @@ jobs:
             jfrog --version
             jfrog rt use jegger-frog-artifactory
             jfrog rt ping
-            echo "will eventually call: jfrog rt search \"*/${{ github.event.repository.name }}-*-${{ needs.initialize_params.outputs.shart_sha }}*.jar\""
+            echo "will eventually call: jfrog rt search \"*/${{ github.event.repository.name }}-*-${{ needs.initialize_params.outputs.short_sha }}*.jar\""
             jfrog rt search "*/apigee-edge-maven-*-20210316*.jar"
+            echo $(jfrog rt search "*/apigee-edge-maven-*-20210316*.jar" --sort-by created --sort-order desc --limit 1) | sed 's/.*path": "\([^"]*\)".*/\1/p'
         - run: |
             ls
 
