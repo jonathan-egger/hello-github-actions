@@ -22,13 +22,18 @@ on:
                 required: true
 
 jobs:
+    # initialize_params:
+    #     outputs:
+    #         repo: ${{  }}
+
+
     show_params:
         runs-on: ubuntu-latest
         steps:
             - run: |
                 echo "stack name: ${{ github.event.inputs.stackname }}"
-                echo "brach: ${{ github.ref }}"
-
+                echo "repo: ${{ github.event.repository.name }}"
+                echo "branch: ${{ github.ref }}"
 
     validate_branch:
         # outputs:
@@ -41,49 +46,26 @@ jobs:
                     echo "Validation failed: This workflow requires a release branch. Instead, branch is ${{ github.event.ref }}"
                     exit 1
                 fi
-    show_push_vars:
-        needs: validate_branch
-        runs-on: ubuntu-latest
-        # if: github.event_name == 'push'
-    
-        steps:
-            # - id: show_validate_output
-            #   run: |
-            #     echo "conclusion: ${{ needs.validate_branch.outputs.status }}"
-            - run: env
-            - run: |
-                echo "github.event.ref: ${{ github.event.ref }}"
-                echo "github.event.before: ${{ github.event.before }}"
-                echo "github.event.after: ${{ github.event.after }}"
-                echo "event name2: ${{ github.event_name }}"
-                echo "github.event.inputs.stackname: ${{ github.event.inputs.stackname }}"
-                echo "where_am_i=in_push" >> $GITHUB_ENV
 
-            - run: |
-                echo $where_am_i
-            
-    # show_other_vars:
-    #     runs-on: ubuntu-latest
-    #     if: github.event_name != 'push'
-    
-    #     steps:
+    # identify_artifact:
+    #     # Getting this to work.
+    #     # Mostly follow: https://github.com/marketplace/actions/setup-jfrog-cli
+    #     # Those instructions suggest "jfrog rt c <server id>". That command is deprecated.
+    #     # Instead, use "jfrog c add <server id>"
+    #     # With that command you must specify http://<platform url>/artifactory as BOTH
+    #     # the "JFrog platform URL" and the "JFrog Artifactory URL." Otherwise the ping command
+    #     # will not work (since it uses the platform URL which returns 404 at the root).
+    #         - uses: jfrog/setup-jfrog-cli@v1
+    #           env:
+    #             JFROG_CLI_LOG_LEVEL: DEBUG
+    #             JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
     #         - run: |
-    #             echo "github.event.ref: ${{ github.event.ref }}"
-    #             echo "github.event.action: ${{ github.event.action }}"
-    #             echo "github.event.workflow_run.head_branch: ${{ github.event.workflow_run.head_branch }}"
-    #             echo "event name2: ${{ github.event_name }}"
-    #             env
-    #             echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
-    #             echo "where_am_i=not_in_push" >> $GITHUB_ENV
+    #             jfrog --version
+    #             jfrog rt use jegger-frog-artifactory
+    #             jfrog rt ping
+    #             jfrog rt dl my-maven-repo/io/apigee/build-tools/enterprise4g/apigee-edge-maven-plugin/2.1.1-SNAPSHOT/apigee-edge-maven-plugin-2.1.1-20210316.160210-1.jar
+    #         - run: ls
 
-    show_where_am_i:
-        runs-on: ubuntu-latest
-        needs: show_push_vars 
-        steps:
-            # Will not see where_am_i here
-            - run: |
-                env
-        
 
     # build:
     #     name: Hello world action
