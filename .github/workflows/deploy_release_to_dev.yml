@@ -22,23 +22,30 @@ on:
                 required: true
 
 jobs:
+    show_input:
+        steps:
+            - run: echo "stack name: ${{ github.event.inputs.stackname }}"
+
+    validate_branch:
+        if: github.ref == 'refs/heads/feature/testing'
+        steps:
+            - run: "need to find a way to bail out here"
+
     show_push_vars:
         runs-on: ubuntu-latest
         # if: github.event_name == 'push'
     
         steps:
+            - run: env
             - run: |
                 echo "github.event.ref: ${{ github.event.ref }}"
                 echo "github.event.before: ${{ github.event.before }}"
                 echo "github.event.after: ${{ github.event.after }}"
                 echo "event name2: ${{ github.event_name }}"
-                env
                 echo "github.event.inputs.stackname: ${{ github.event.inputs.stackname }}"
                 echo "where_am_i=in_push" >> $GITHUB_ENV
 
             - run: |
-                echo "should see where_am_i in env now"
-                env
                 echo $where_am_i
             
     # show_other_vars:
