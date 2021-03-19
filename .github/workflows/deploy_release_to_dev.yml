@@ -59,12 +59,12 @@ jobs:
         outputs:
             artifact: ${{ steps.ia_step.outputs.artifact }}
         steps:
-        - id: ia_step
         - uses: jfrog/setup-jfrog-cli@v1
           env:
             JFROG_CLI_LOG_LEVEL: DEBUG
             JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
-        - run: |
+        - id: ia_step
+          run: |
             jfrog --version
             jfrog rt use jegger-frog-artifactory
             jfrog rt ping
