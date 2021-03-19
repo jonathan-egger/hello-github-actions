@@ -56,13 +56,6 @@ jobs:
         needs: [initialize_params, validate_branch]
         runs-on: ubuntu-latest
         steps:
-    # Getting this to work.
-    # Mostly follow: https://github.com/marketplace/actions/setup-jfrog-cli
-    # Those instructions suggest "jfrog rt c <server id>". That command is deprecated.
-    # Instead, use "jfrog c add <server id>"
-    # With that command you must specify http://<platform url>/artifactory as BOTH
-    # the "JFrog platform URL" and the "JFrog Artifactory URL." Otherwise the ping command
-    # will not work (since it uses the platform URL which returns 404 at the root).
             - uses: jfrog/setup-jfrog-cli@v1
               env:
                 JFROG_CLI_LOG_LEVEL: DEBUG
