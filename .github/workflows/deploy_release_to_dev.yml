@@ -71,6 +71,8 @@ jobs:
             echo "will eventually call: jfrog rt search \"$ARTIFACT_PATTERN\""
             ARTIFACT_PATTERN="*/apigee-edge-maven-*-20210316*.jar"
             ARTIFACT="$(echo $(jfrog rt search "$ARTIFACT_PATTERN" --sort-by created --sort-order desc --limit 1) | sed 's/.*path": "\([^"]*.jar\)".*/\1/')"
+            echo $ARTIFACT
+            echo ${#ARTIFACT}
             if [[ ${#ARTIFACT} < 5 ]]
             then
                 echo "Unable to find artifact matching pattern: $ARTIFACT_PATTERN"
