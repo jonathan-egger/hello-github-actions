@@ -37,8 +37,6 @@ jobs:
         steps:
             - run: |
                 echo "need to find a way to bail out here"
-            - run: |
-                echo "${{ steps.*.conclusion }}"
 
     show_push_vars:
         needs: validate_branch
@@ -48,7 +46,7 @@ jobs:
         steps:
             - run: env
             - run: |
-                echo "conclusion: ${{ steps.validate_branch.outputs.status }}"
+                echo "conclusion: ${{ needs.validate_branch.outputs.status }}"
                 echo "github.event.ref: ${{ github.event.ref }}"
                 echo "github.event.before: ${{ github.event.before }}"
                 echo "github.event.after: ${{ github.event.after }}"
