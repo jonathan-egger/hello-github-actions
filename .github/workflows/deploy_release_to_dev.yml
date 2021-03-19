@@ -43,7 +43,7 @@ jobs:
             echo "stack name: ${{ github.event.inputs.stackname }}"
             echo "repo: ${{ github.event.repository.name }}"
             echo "branch: ${{ github.ref }}"
-            echo "short_sha: ${{ needs.initialize_params.outputs.shart_sha }}"
+            echo "short_sha: ${{ needs.initialize_params.outputs.short_sha }}"
 
     validate_branch:
         # outputs:
