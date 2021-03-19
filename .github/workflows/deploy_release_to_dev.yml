@@ -35,22 +35,23 @@ jobs:
         needs: initialize_params
         runs-on: ubuntu-latest
         steps:
-            - run: |
-                echo "stack name: ${{ github.event.inputs.stackname }}"
-                echo "repo: ${{ github.event.repository.name }}"
-                echo "branch: ${{ github.ref }}"
+        - run: |
+            echo "stack name: ${{ github.event.inputs.stackname }}"
+            echo "repo: ${{ github.event.repository.name }}"
+            echo "branch: ${{ github.ref }}"
+            echo "short_sha: ${{ needs.initialize_params.outputs.shart_sha }}"
 
     validate_branch:
         # outputs:
         #     status: ${{ !contains(steps.*.conclusion, 'failure') }}
         runs-on: ubuntu-latest
         steps:
-            - run: |
-                if [[ ${{ github.event.ref }} != refs/heads/release/* ]] 
-                then 
-                    echo "Validation failed: This workflow requires a release branch. Instead, branch is ${{ github.event.ref }}"
-                    exit 1
-                fi
+        - run: |
+            if [[ ${{ github.event.ref }} != refs/heads/release/* ]] 
+            then 
+                echo "Validation failed: This workflow requires a release branch. Instead, branch is ${{ github.event.ref }}"
+                exit 1
+            fi
 
     # identify_artifact:
     #     # needs: [initialize_params, validate_branch]
