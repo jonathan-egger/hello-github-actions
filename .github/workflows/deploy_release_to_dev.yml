@@ -89,8 +89,13 @@ jobs:
         needs: [identify_artifact]
         runs-on: ubuntu-latest
         steps:
-        - run: |
-            echo "artifact: ${{ needs.identify_artifact.outputs.artifact }}"
+            - uses: jfrog/setup-jfrog-cli@v1
+              env:
+                JFROG_CLI_LOG_LEVEL: DEBUG
+                JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
+            - run: |
+                echo "artifact: ${{ needs.identify_artifact.outputs.artifact }}"
+                jfrog -version
 
     # identify_artifact:
     #     # Getting this to work.
