@@ -3,8 +3,18 @@
 name: Dev Deployment Workflow
 
 on: 
-    # Allows invocation from outside github (i.e., Jenkins)
-    repository_dispatch:
+    # Allows invocation from outside github (i.e., Jenkins) using POST:
+
+    # curl --location --request POST 'https://api.github.com/repos/jonathan-egger/hello-github-actions/dispatches' \
+    # --header 'Accept: application/vnd.github.v3+json' \
+    # --header 'Authorization: Basic API_TOKEN_BASIC_AUTH_HEADER' \
+    # --header 'Content-Type: application/json' \
+    # --data-raw '{"event_type":"event_type"}'
+
+    # From https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+    # Note: This event will only trigger a workflow run if the workflow file is on the default branch.
+
+#    repository_dispatch:
 
     # Allows invocation from github actions UI
     workflow_dispatch:

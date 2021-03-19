@@ -6,12 +6,20 @@ on:
     #             description: Your name
     #             default: Jonathan2
     #             required: true
+
+    # Allows manual trigger from UI
     workflow_dispatch:
         inputs:
             name:
                 description: Your name
                 default: Jonathan
                 required: true
+
+    # NOTE: This event will only trigger a workflow run if the workflow file is on the default branch (develop).
+    # repository_dispatch:
+
+
+    
 
 jobs:
     show_push_vars:
