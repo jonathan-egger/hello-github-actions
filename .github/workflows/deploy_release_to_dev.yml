@@ -24,7 +24,8 @@ on:
 jobs:
     show_input:
         steps:
-            - run: echo "stack name: ${{ github.event.inputs.stackname }}"
+            - run: |
+            echo "stack name: ${{ github.event.inputs.stackname }}"
 
     validate_branch:
         if: github.ref == 'refs/heads/feature/testing'
