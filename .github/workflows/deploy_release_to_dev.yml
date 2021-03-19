@@ -30,7 +30,8 @@ jobs:
 
     validate_branch:
         outputs:
-            status: ${{ !contains(steps.*.conclusion, 'failure') }}
+            # status: ${{ !contains(steps.*.conclusion, 'failure') }}
+            status: blah
         runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/feature/testing'
         steps:
