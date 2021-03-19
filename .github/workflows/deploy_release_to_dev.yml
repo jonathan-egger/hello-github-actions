@@ -38,13 +38,15 @@ jobs:
                 echo "need to find a way to bail out here"
 
     show_push_vars:
+        inputs:
+
         runs-on: ubuntu-latest
         # if: github.event_name == 'push'
     
         steps:
             - run: env
             - run: |
-                echo "conclusion: ${{ validate_branch.outputs.status }}"
+                echo "conclusion: ${{ steps.validate_branch.outputs.status }}"
                 echo "github.event.ref: ${{ github.event.ref }}"
                 echo "github.event.before: ${{ github.event.before }}"
                 echo "github.event.after: ${{ github.event.after }}"
