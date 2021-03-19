@@ -25,8 +25,7 @@ jobs:
     initialize_params:
         runs-on: ubuntu-latest
         outputs:
-            short_sha: blah3
-# short_sha: ${{ steps.determine_short_sha.outputs.short_sha }}
+            short_sha: ${{ steps.determine_short_sha.outputs.short_sha }}
         steps:
         - id: determine_short_sha
           run: |
