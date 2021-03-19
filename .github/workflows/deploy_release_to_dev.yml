@@ -57,8 +57,9 @@ jobs:
         needs: [initialize_params, validate_branch]
         runs-on: ubuntu-latest
         outputs:
-            artifact: ${{ steps.identify_artifact.outputs.artifact }}
+            artifact: ${{ steps.ia_step.outputs.artifact }}
         steps:
+        - id: ia_step
         - uses: jfrog/setup-jfrog-cli@v1
           env:
             JFROG_CLI_LOG_LEVEL: DEBUG
