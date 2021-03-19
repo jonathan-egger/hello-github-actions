@@ -56,6 +56,8 @@ jobs:
     identify_artifact:
         needs: [initialize_params, validate_branch]
         runs-on: ubuntu-latest
+        outputs:
+            artifact: ${{ steps.identify_artifact.outputs.artifact }}
         steps:
         - uses: jfrog/setup-jfrog-cli@v1
           env:
@@ -69,12 +71,21 @@ jobs:
             echo "will eventually call: jfrog rt search \"$ARTIFACT_PATTERN\""
             ARTIFACT_PATTERN="*/apigee2-edge-maven-*-20210316*.jar"
             ARTIFACT="$(echo $(jfrog rt search "$ARTIFACT_PATTERN" --sort-by created --sort-order desc --limit 1) | sed 's/.*path": "\([^"]*.jar\)".*/\1/')"
-            if [[ ${#ARIFACT} < 5 ]]
+            if [[ ${#ARTIFACT} < 5 ]]
             then
                 echo "Unable to find artifact matching pattern: $ARTIFACT_PATTERN"
+                exit 1
             fi
+            echo "::set-output name=short_sha::$ARTIFACT" 
         - run: |
             ls
+
+    download_artifact:
+        needs: [identify_artifact]
+        runs-on: ubuntu-latest
+        steps:
+        - run: |
+            echo "artifact: ${{ needs.identify_artifact.outputs.artifact }}"
 
     # identify_artifact:
     #     # Getting this to work.
