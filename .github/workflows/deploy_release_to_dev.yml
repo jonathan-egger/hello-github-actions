@@ -65,9 +65,14 @@ jobs:
             jfrog --version
             jfrog rt use jegger-frog-artifactory
             jfrog rt ping
-            echo "will eventually call: jfrog rt search \"*/${{ github.event.repository.name }}-*-${{ needs.initialize_params.outputs.short_sha }}*.jar\""
-            jfrog rt search "*/apigee-edge-maven-*-20210316*.jar"
-            echo $(jfrog rt search "*/apigee-edge-maven-*-20210316*.jar" --sort-by created --sort-order desc --limit 1) | sed 's/.*path": "\([^"]*\)".*/\1/p'
+            ARTIFACT_PATTERN="*/${{ github.event.repository.name }}-*-${{ needs.initialize_params.outputs.short_sha }}*.jar"
+            echo "will eventually call: jfrog rt search \"$ARTIFACT_PATTERN\""
+            ARTIFACT_PATTERN="*/apigee2-edge-maven-*-20210316*.jar"
+            ARTIFACT="$(echo $(jfrog rt search "$ARTIFACT_PATTERN" --sort-by created --sort-order desc --limit 1) | sed 's/.*path": "\([^"]*.jar\)".*/\1/')"
+            if [[ ${#ARIFACT} < 5 ]]
+            then
+                echo "Unable to find artifact matching pattern: $ARTIFACT_PATTERN"
+            fi
         - run: |
             ls
 
