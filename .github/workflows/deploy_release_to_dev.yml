@@ -24,7 +24,7 @@ on:
 jobs:
     show_push_vars:
         runs-on: ubuntu-latest
-        if: github.event_name == 'push'
+        # if: github.event_name == 'push'
     
         steps:
             - run: |
@@ -33,7 +33,7 @@ jobs:
                 echo "github.event.after: ${{ github.event.after }}"
                 echo "event name2: ${{ github.event_name }}"
                 env
-                echo "github.event.inputs.name: ${{ github.event.inputs.stackname }}"
+                echo "github.event.inputs.stackname: ${{ github.event.inputs.stackname }}"
                 echo "where_am_i=in_push" >> $GITHUB_ENV
 
             - run: |
@@ -41,19 +41,19 @@ jobs:
                 env
                 echo $where_am_i
             
-    show_other_vars:
-        runs-on: ubuntu-latest
-        if: github.event_name != 'push'
+    # show_other_vars:
+    #     runs-on: ubuntu-latest
+    #     if: github.event_name != 'push'
     
-        steps:
-            - run: |
-                echo "github.event.ref: ${{ github.event.ref }}"
-                echo "github.event.action: ${{ github.event.action }}"
-                echo "github.event.workflow_run.head_branch: ${{ github.event.workflow_run.head_branch }}"
-                echo "event name2: ${{ github.event_name }}"
-                env
-                echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
-                echo "where_am_i=not_in_push" >> $GITHUB_ENV
+    #     steps:
+    #         - run: |
+    #             echo "github.event.ref: ${{ github.event.ref }}"
+    #             echo "github.event.action: ${{ github.event.action }}"
+    #             echo "github.event.workflow_run.head_branch: ${{ github.event.workflow_run.head_branch }}"
+    #             echo "event name2: ${{ github.event_name }}"
+    #             env
+    #             echo "github.event.inputs.name: ${{ github.event.inputs.name }}"
+    #             echo "where_am_i=not_in_push" >> $GITHUB_ENV
 
     show_where_am_i:
         runs-on: ubuntu-latest
