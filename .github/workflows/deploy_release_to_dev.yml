@@ -9,11 +9,12 @@ on:
     # Get workflow ID:
     #   curl https://api.github.com/repos/jonathan-egger/hello-github-actions/actions/workflows \
     #       --header 'Accept: application/vnd.github.v3+json' -k 
-    # POST to branch feature/testing using workflow ID 675062
-    #    curl --location --request POST 'https://api.github.com/repos/jonathan-egger/hello-github-actions/actions/workflows/6752062/dispatches' \
+    # POST to branch feature/testing using workflow ID 6837135
+    #   curl --location --request POST 'https://api.github.com/repos/jonathan-egger/hello-github-actions/actions/workflows/6837135/dispatches' \
     #       --header 'Accept: application/vnd.github.v3+json' \
     #       --header 'Authorization: Basic OjMzZTQ0MTIxZDk4MjFhMzdmNGY0MzI0YTA1ODY1YWVmMDgwNTIxMDE=' \
-    #       --data-raw '{"ref":"feature/testing", "stackname": "devopsstack0123456"}' -k
+    #       --data-raw '{"ref":"feature/testing", "inputs": {"stackname": "devopsstack0123456"}}' -k
+
     workflow_dispatch:
         inputs:
             stackname:
