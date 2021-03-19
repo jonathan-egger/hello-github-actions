@@ -53,7 +53,7 @@ jobs:
                 fi
 
     identify_artifact:
-        needs: [initialize_params, validate_branch]
+        # needs: [initialize_params, validate_branch]
         runs-on: ubuntu-latest
         steps:
         # - uses: jfrog/setup-jfrog-cli@v1
@@ -66,7 +66,8 @@ jobs:
                 jfrog rt ping
                 echo "would normally be jfrog rt search "*/${{ github.event.repository.name }}-*-${{ needs.initialize_params.outputs.shart_sha }}*.jar"
                 jfrog rt search "*/apigee-edge-maven-*-20210316*.jar"
-            - run: ls
+            - run: |
+                ls
 
     # identify_artifact:
     #     # Getting this to work.
