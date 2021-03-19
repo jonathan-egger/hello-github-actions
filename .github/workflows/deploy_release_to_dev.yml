@@ -36,7 +36,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - run: |
-                if [[ ${{ github.event.ref }} = refs/heads/releaseblah/* ]] 
+                if [[ ${{ github.event.ref }} = refs/heads/release/* ]] 
                 then 
                     echo "Validation failed: Workflow executed on non-release branch"
                     exit 1
