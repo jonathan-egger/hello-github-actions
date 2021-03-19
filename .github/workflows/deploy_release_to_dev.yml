@@ -43,9 +43,10 @@ jobs:
         # if: github.event_name == 'push'
     
         steps:
+            - id: show_validate_output
+              run: echo "conclusion: ${{ needs.validate_branch.outputs.status }}"
             - run: env
             - run: |
-                echo "conclusion: ${{ needs.validate_branch.outputs.status }}"
                 echo "github.event.ref: ${{ github.event.ref }}"
                 echo "github.event.before: ${{ github.event.before }}"
                 echo "github.event.after: ${{ github.event.after }}"
