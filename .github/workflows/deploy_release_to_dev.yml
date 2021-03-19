@@ -34,12 +34,11 @@ jobs:
         # outputs:
         #     status: ${{ !contains(steps.*.conclusion, 'failure') }}
         runs-on: ubuntu-latest
-        if: ${{ !startsWith(github.ref, 'refs/heads/release2/') }}
         steps:
             - run: |
-                if [[ {{ github.ref }} = refs/heads/release/* ]] 
-                then 
-                echo "Validation failed: Workflow executed on non-release branch" && exit 1 
+                if [[ ${{ github.event.ref }} = refs/heads/release/* ]] \
+                then \
+                echo "Validation failed: Workflow executed on non-release branch" \
                 fi
     show_push_vars:
         needs: validate_branch
