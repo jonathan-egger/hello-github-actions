@@ -62,17 +62,17 @@ jobs:
         # With that command you must specify http://<platform url>/artifactory as BOTH
         # the "JFrog platform URL" and the "JFrog Artifactory URL." Otherwise the ping command
         # will not work (since it uses the platform URL which returns 404 at the root).
-            - uses: jfrog/setup-jfrog-cli@v1
-              env:
-                JFROG_CLI_LOG_LEVEL: DEBUG
-                JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
-            - run: |
-                jfrog --version
-                jfrog rt use jegger-frog-artifactory
-                jfrog rt ping
-                echo "would normally be jfrog rt search "*/${{ github.event.repository.name }}-*-${{ needs.initialize_params.outputs.shart_sha }}*.jar"
-                jfrog rt search "*/apigee-edge-maven-*-20210316*.jar"
-            - run: ls
+        - uses: jfrog/setup-jfrog-cli@v1
+            env:
+            JFROG_CLI_LOG_LEVEL: DEBUG
+            JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
+        - run: |
+            jfrog --version
+            jfrog rt use jegger-frog-artifactory
+            jfrog rt ping
+            echo "would normally be jfrog rt search "*/${{ github.event.repository.name }}-*-${{ needs.initialize_params.outputs.shart_sha }}*.jar"
+            jfrog rt search "*/apigee-edge-maven-*-20210316*.jar"
+        - run: ls
 
     # identify_artifact:
     #     # Getting this to work.
