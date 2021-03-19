@@ -32,7 +32,8 @@ jobs:
         runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/feature/testing'
         steps:
-            - run: "need to find a way to bail out here"
+            - run: |
+                echo "need to find a way to bail out here"
 
     show_push_vars:
         runs-on: ubuntu-latest
