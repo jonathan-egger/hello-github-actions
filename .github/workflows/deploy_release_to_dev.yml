@@ -56,10 +56,10 @@ jobs:
         needs: [initialize_params, validate_branch]
         runs-on: ubuntu-latest
         steps:
-        - uses: jfrog/setup-jfrog-cli@v1
-          env:
-            JFROG_CLI_LOG_LEVEL: DEBUG
-            JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
+        # - uses: jfrog/setup-jfrog-cli@v1
+        #   env:
+        #     JFROG_CLI_LOG_LEVEL: DEBUG
+        #     JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
         - run: |
             jfrog --version
             jfrog rt use jegger-frog-artifactory
