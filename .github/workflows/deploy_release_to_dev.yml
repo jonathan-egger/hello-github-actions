@@ -79,7 +79,7 @@ jobs:
                 exit 1
             fi
             echo "Found $ARTIFACT"
-            echo "::set-output name=short_sha::$ARTIFACT" 
+            echo "::set-output name=artifact::$ARTIFACT" 
         - run: |
             ls
 
