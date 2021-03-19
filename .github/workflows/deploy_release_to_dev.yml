@@ -23,6 +23,7 @@ on:
 
 jobs:
     show_input:
+        runs-on: ubuntu-latest
         steps:
             - run: |
                 echo "stack name: ${{ github.event.inputs.stackname }}"
