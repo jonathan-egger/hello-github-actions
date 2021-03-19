@@ -29,10 +29,7 @@ jobs:
         steps:
         - id: determine_short_sha
           run: |
-            echo $GITHUB_SHA
-            echo $(echo "$GITHUB_SHA" | cut -c1-8)
-            echo "::set-output name=short_sha::blah2" 
-# echo "::set-output name=short_sha::$(echo "$GITHUB_SHA" | cut -c1-8)" 
+            echo "::set-output name=short_sha::$(echo "$GITHUB_SHA" | cut -c1-8)" 
 
     show_params:
         needs: initialize_params
