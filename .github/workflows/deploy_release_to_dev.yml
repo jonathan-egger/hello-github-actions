@@ -30,7 +30,7 @@ jobs:
 
     validate_branch:
         outputs:
-            status: ${{ steps.*.conclusion }}
+            status: ${{ contains(steps.*.conclusion, 'failure') }}
         runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/feature/testing'
         steps:
@@ -38,6 +38,7 @@ jobs:
                 echo "need to find a way to bail out here"
 
     show_push_vars:
+        needs: validate_branch
         runs-on: ubuntu-latest
         # if: github.event_name == 'push'
     
