@@ -22,17 +22,19 @@ on:
                 required: true
 
 jobs:
-    show_input:
+    show_params:
         runs-on: ubuntu-latest
         steps:
             - run: |
                 echo "stack name: ${{ github.event.inputs.stackname }}"
+                echo "brach: ${{ github.ref }}"
+
 
     validate_branch:
         # outputs:
         #     status: ${{ !contains(steps.*.conclusion, 'failure') }}
         runs-on: ubuntu-latest
-        if: github.ref != 'refs/heads/release/**'
+        if: ${{ !startsWith(github.ref, 'refs/heads/release/') }}
         steps:
             - run: |
                 echo "Validation failed: Workflow executed on non-release branch"
