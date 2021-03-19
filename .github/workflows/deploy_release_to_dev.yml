@@ -37,6 +37,8 @@ jobs:
         steps:
             - run: |
                 echo "need to find a way to bail out here"
+            - run: |
+                echo ${{ steps.*.conclusion }}"
 
     show_push_vars:
         needs: validate_branch
