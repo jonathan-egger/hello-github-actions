@@ -30,7 +30,7 @@ jobs:
         - id: determine_short_sha
           run: |
             echo $GITHUB_SHA
-            echo $(git rev-parse --short "$GITHUB_SHA")
+            echo $(cut "$GITHUB_SHA" | cut 1-9)
             echo "::set-output name=short_sha::$(git rev-parse --short "$GITHUB_SHA")" 
 
     show_params:
