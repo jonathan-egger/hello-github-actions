@@ -29,6 +29,8 @@ jobs:
                 echo "stack name: ${{ github.event.inputs.stackname }}"
 
     validate_branch:
+        outputs:
+            status: ${{ steps.*.conclusion }}
         runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/feature/testing'
         steps:
@@ -42,6 +44,7 @@ jobs:
         steps:
             - run: env
             - run: |
+                echo "conclusion: ${{ validate_branch.outputs.status }}"
                 echo "github.event.ref: ${{ github.event.ref }}"
                 echo "github.event.before: ${{ github.event.before }}"
                 echo "github.event.after: ${{ github.event.after }}"
