@@ -1,4 +1,4 @@
-name: A workflow for my Hello World file
+name: A workflow for my Hello World file on ${{ github.event.ref }} branch
 on: 
     # push:
     #     inputs:
