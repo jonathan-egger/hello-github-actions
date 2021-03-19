@@ -57,13 +57,14 @@ jobs:
         needs: [initialize_params, validate_branch]
         runs-on: ubuntu-latest
         outputs:
-            artifact: ${{ steps.ia_step.outputs.artifact }}
+            artifact: ${{ steps.the_step.outputs.artifact }}
         steps:
         - uses: jfrog/setup-jfrog-cli@v1
           env:
             JFROG_CLI_LOG_LEVEL: DEBUG
             JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
-        - id: ia_step
+        # Step ID is required when step produces output value
+        - id: the_step
           run: |
             jfrog --version
             jfrog rt use jegger-frog-artifactory
