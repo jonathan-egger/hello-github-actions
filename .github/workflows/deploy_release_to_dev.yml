@@ -38,8 +38,6 @@ jobs:
                 echo "need to find a way to bail out here"
 
     show_push_vars:
-        inputs:
-
         runs-on: ubuntu-latest
         # if: github.event_name == 'push'
     
