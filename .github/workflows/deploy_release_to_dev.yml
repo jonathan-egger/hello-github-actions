@@ -28,6 +28,7 @@ jobs:
                 echo "stack name: ${{ github.event.inputs.stackname }}"
 
     validate_branch:
+        runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/feature/testing'
         steps:
             - run: "need to find a way to bail out here"
