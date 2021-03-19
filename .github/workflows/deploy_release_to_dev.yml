@@ -28,7 +28,7 @@ jobs:
             short_sha: ${{ steps.determine_short_sha.outputs.short_sha }}
         steps:
         - id: determine_short_sha
-        - run: |
+          run: |
             echo "::set-output name=short_sha::$(git rev-parse --short "$GITHUB_SHA")" 
 
     show_params:
