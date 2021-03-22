@@ -10,7 +10,7 @@ RUN awk '/<\/plugins>/ { system ("cat build-plugins-jar-with-dependencies.xml") 
 RUN mvn -Dmaven.wagon.http.ssl.insecure=true clean package
 
 FROM openjdk:8-alpine
-COPY --from=1 /app/target/jbossdeployer-0.1.0-jar-with-dependencies.jar /app
+COPY --from=1 /app/target/jbossdeployer-0.1.0-jar-with-dependencies.jar /app/jbossdeployer.jar
 WORKDIR /
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
