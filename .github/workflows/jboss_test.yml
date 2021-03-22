@@ -1,0 +1,15 @@
+# workflow syntax guide: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
+name: JBoss Test Workflow
+
+on: 
+    workflow_dispatch:
+
+jobs:
+    try_jboss_cli_container:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - uses: ./jboss-deploy-action
+              with:
+                My_NAME: "Jonathan"
+      
