@@ -120,7 +120,7 @@ jobs:
                     core.setOutput('path', filePath)
 
             - name: Stage Artifact
-              uses: actions/upload-arifact@master
+              uses: actions/upload-artifact@master
               with:
                 name: artifact-from-artifactory
                 path: ${{ steps.determine-artifact-path.outputs.path }}
