@@ -17,13 +17,8 @@ try {
     noProfile: true
   });
   
-  ps.addCommand('echo node-powershell')
-  ps.invoke().then(output => {
-    console.log(output);
-  }).catch(err => {
-    console.log(err);
-    ps.dispose();
-  });
+  ps.addCommand('echo doing node-powershell')
+  ps.invoke().then(output => {}).catch(error => {});
 
 } catch (error) {
   core.setFailed(error.message);
