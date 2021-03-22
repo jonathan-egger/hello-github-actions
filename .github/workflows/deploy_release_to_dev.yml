@@ -114,7 +114,7 @@ jobs:
                 script: |
                     const path = "${{ needs.identify_artifact.outputs.artifact }}".split('/').pop()
                     core.setOutput('path', path)
-            - run: echo "${{get-artifact-path.outputs.path}}"
+            - run: echo "${{ steps.get-artifact-path.outputs.path }}"
 
             # - name: Stage Artifact
             #   uses: actions/upload-arifact@master
