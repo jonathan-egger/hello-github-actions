@@ -1,5 +1,16 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const edge = require('edge');
+
+var hello = edge.func('ps', function () {
+    /*
+    "PowerShell welcomes $inputFromJS on $(Get-Date)"
+    */});
+    
+hello('Node.js', function (error, result) {
+    if (error) throw error;
+    console.log(result[0]);
+});
 
 try {
   // `who-to-greet` input defined in action metadata file
