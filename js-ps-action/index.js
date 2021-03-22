@@ -1,5 +1,20 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const shell = require('node-powershell');
+let ps = new shell({
+  executionPolicy: 'Bypass',
+  noProfile: true
+});
+
+ps.addCommand('echo node-powershell')
+ps.invoke().then(output => {
+  console.log(output);
+}).catch(err => {
+  console.log(err);
+  ps.dispose();
+});
+
+
 
 try {
   // `who-to-greet` input defined in action metadata file
