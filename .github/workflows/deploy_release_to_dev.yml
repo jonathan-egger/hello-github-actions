@@ -84,6 +84,13 @@ jobs:
             ls
 
     download_artifact:
+        # Getting this to work.
+        # Mostly follow: https://github.com/marketplace/actions/setup-jfrog-cli
+        # Those instructions suggest "jfrog rt c <server id>". That command is deprecated.
+        # Instead, use "jfrog c add <server id>"
+        # With that command you must specify http://<platform url>/artifactory as BOTH
+        # the "JFrog platform URL" and the "JFrog Artifactory URL." Otherwise the ping command
+        # will not work (since it uses the platform URL which returns 404 at the root).
         needs: [identify_artifact]
         runs-on: ubuntu-latest
         steps:
@@ -92,24 +99,31 @@ jobs:
                 JFROG_CLI_LOG_LEVEL: DEBUG
                 JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_SECRET_1 }}
             - run: jfrog -version
-            - name: Download Artifact
-              run: |
-                echo "Downloading artifact: ${{ needs.identify_artifact.outputs.artifact }}"
-                jfrog rt dl ${{ needs.identify_artifact.outputs.artifact }}
-                ls
-            - name: Show Results
-              run: |
-                pwd
-                ls
+            # - name: Download Artifact
+            #   run: |
+            #     echo "Downloading artifact: ${{ needs.identify_artifact.outputs.artifact }}"
+            #     jfrog rt dl ${{ needs.identify_artifact.outputs.artifact }}
+            #     ls
+            # - name: Show Results
+            #   run: |
+            #     pwd
+            #     ls
+            - id: get-artifact-path
+              uses: actions/github-script@0.9.0
+              with:
+                script: |
+                const path = "${{ needs.identify_artifact.outputs.artifact }}".split('/').pop()
+                core.setOutput('path', path)
+            - run: echo "${{get-artifact-path.outputs.path}}"
+
+            # - name: Stage Artifact
+            #   uses: actions/upload-arifact@master
+            #   with:
+            #     name: artifact-from-artifactory
+            #     path: 
 
     # identify_artifact:
-    #     # Getting this to work.
-    #     # Mostly follow: https://github.com/marketplace/actions/setup-jfrog-cli
-    #     # Those instructions suggest "jfrog rt c <server id>". That command is deprecated.
-    #     # Instead, use "jfrog c add <server id>"
-    #     # With that command you must specify http://<platform url>/artifactory as BOTH
-    #     # the "JFrog platform URL" and the "JFrog Artifactory URL." Otherwise the ping command
-    #     # will not work (since it uses the platform URL which returns 404 at the root).
+
     #         - uses: jfrog/setup-jfrog-cli@v1
     #           env:
     #             JFROG_CLI_LOG_LEVEL: DEBUG
