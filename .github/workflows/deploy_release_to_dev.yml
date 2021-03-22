@@ -96,7 +96,7 @@ jobs:
             - run: |
                 echo "artifact: ${{ needs.identify_artifact.outputs.artifact }}"
                 jfrog -version
-                jfrog rj dl ${{ needs.identify_artifact.outputs.artifact }}
+                jfrog rt dl ${{ needs.identify_artifact.outputs.artifact }}
                 ls
             - run: |
                 ls
