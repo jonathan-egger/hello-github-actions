@@ -1,0 +1,16 @@
+name: 'Trying Javascript with PowerShell'
+inputs:
+    who-to-greet:
+        description: 'Who to greet'
+        required: true
+        default: 'World'
+outputs:
+    time:
+        description: 'The time we greeted you'
+runs:
+    using: "composite"
+    steps:
+        - using: 'node12'
+          main: 'index.js'
+        - using: 'powershell'
+          main: 'index.ps'
