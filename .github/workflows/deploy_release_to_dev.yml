@@ -112,9 +112,12 @@ jobs:
               uses: actions/github-script@0.9.0
               with:
                 script: |
-                    const path = "${{ needs.identify_artifact.outputs.artifact }}".split('/').pop()
-                    core.setOutput('path', path)
-            - run: echo "${{ steps.get-artifact-path.outputs.path }}"
+                    let artifactoryPath = "${{ needs.identify_artifact.outputs.artifact }}"
+                    const filePath = artifactoryPath.substring(artifactoryPath.indexOf("/") + 1)
+                    core.setOutput('path', filePath)
+            - run: |
+                echo "${{ needs.identify_artifact.outputs.artifact }}"
+                echo "${{ steps.get-artifact-path.outputs.path }}"
 
             # - name: Stage Artifact
             #   uses: actions/upload-arifact@master
