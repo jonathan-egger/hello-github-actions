@@ -10,7 +10,7 @@ outputs:
 runs:
     using: "composite"
     steps:
-        - using: 'node12'
-          main: 'index.js'
-        - using: 'powershell'
-          main: 'index.ps'
+      - using: 'node12'
+        main: 'index.js'
+      - using: 'powershell'
+        main: 'index.ps'
