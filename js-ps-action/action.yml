@@ -8,5 +8,5 @@ outputs:
     time:
         description: 'The time we greeted you'
 runs:
-    using: 'node12'
+    using: 'node8'
     main: 'index.js'
